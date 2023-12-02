@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, jsonify
-import joblib
+import joblib, os
 
 app = Flask(__name__)
-
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI", "sqlite:///posts.db")
 # Load saved models
 vectorizer = joblib.load('count_vectorizer.joblib')
 naive_bayes_model = joblib.load('naive_bayes_model.joblib')
