@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Classifier</title>
+  <style>
+   .bottom-description {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    font-size: 12px;
+  }
+  .no_bullets{
+    list-style-type: none;
+    font-size: 12px;
+  }
+ </style>
+</head>
+<body style="text-align: center;">
+    <h1 style="font-size: 30px;">Harnessing Blooms Taxonomy: A Question Classification Tool</h1>
+    <p style="font-size: 16px;">BTP-1 by Jithin Vinod (20ME31020)</p>
+
+  <form action="/predict" method="post">
+    <label for="question" style="font-size: 18px;">Enter your question:</label>
+    <input type="text" name="question" required style="font-size: 18px;">
+    <button type="submit" style="font-size: 18px;">Predict</button>
+  </form>
+
+  {% if question %}
+    <p style="font-size: 18px;"><strong>Your Question:</strong> {{ question }}</p>
+    <p style="font-size: 10px;"><strong>Naive Bayes Prediction:</strong> {{ nb_prediction }} &nbsp; &nbsp;&nbsp;
+     <strong>SVM Prediction:</strong> {{ svm_prediction }} &nbsp;&nbsp;&nbsp;
+     <strong>XGBoost Prediction:</strong> {{ xgb_prediction }} 
+    <p style="font-size: 18px;"></p><strong>Final Prediction:</strong> {{ final_prediction }}</p>
+  {% endif %}
+  
+  <div class="bottom-description">
+    <p style="font-size: 16px;"><strong>Delving into the Depths of Cognitive Learning:</strong></p>
+  
+    <p style="font-size: 12px;">This innovative tool, made by Jithin Vinod (20ME31020), empowers you to seamlessly classify questions based on the esteemed Bloom's Taxonomy. By meticulously analyzing each question, it discerns its alignment with the six fundamental levels of intellectual engagement:</p>
+  
+    <ul class ="no_bullets">
+      <li><strong>Knowledge     :</strong> Recalling specific facts or knowledge</li>
+      <li><strong>Comprehension :</strong> Grasping the meaning and implications of information</li>
+      <li><strong>Application   :</strong> Employing knowledge to solve problems and make decisions</li>
+      <li><strong>Analyze       :</strong> Breaking down complex information into its components</li>
+      <li><strong>Evaluation    :</strong> Assessing the validity and significance of information</li>
+      <li><strong>Synthesis     :</strong> Generating new ideas and solutions</li>
+    </ul>
+  
+    <p style="font-size: 12px;"><strong>Model Training:</strong> The models were trained on a dataset of about <strong>2000 questions</strong>. The final prediction was decided on by accounting for the predictions of each model and iteratively assigning them weights, which were implemented in the final tool.</p>
+  </div>
+ 
+</body>
+</html>
