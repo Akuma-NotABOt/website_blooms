@@ -10,41 +10,66 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #f2f2f2;
-    padding: 20px;
+    background-color: #bdbdba;
+   
     font-size: 12px;
+   
   }
   .no_bullets{
     list-style-type: none;
     font-size: 12px;
   }
+  .special{
+    font-family: Arial, Helvetica, sans-serif;
+    margin:0px;
+  }
+  .mbutton{
+  background-color: rgb(227, 164, 39);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+  
+  
  </style>
 </head>
-<body style="text-align: center;">
-    <h1 style="font-size: 30px;">Harnessing Blooms Taxonomy: A Question Classification Tool</h1>
-    <p style="font-size: 16px;">BTP-1 by Jithin Vinod (20ME31020)</p>
+<body style="text-align: center;" class="special">
+    <h1 style="font-size: 30px; color:rgb(227, 164, 39)" >Harnessing Blooms Taxonomy</h1>
+    <h2 style="font-size: 20px; font-weight: lighter;">  Question Classification Tool </h2>
+    <h3 style="font-size: 16px; font-weight: lighter;">BTP-1 by Jithin Vinod (20ME31020)</h3>
 
   <form action="/predict" method="post">
     <label for="question" style="font-size: 18px;">Enter your question:</label>
-    <input type="text" name="question" required style="font-size: 18px;">
-    <button type="submit" style="font-size: 18px;">Predict</button>
+    <input type="text" name="question" required style="font-size: 18px;" size="50">
+    <br><br>    
+    <button type="submit" class="mbutton" >PREDICT</button>
   </form>
 
   {% if question %}
     <p style="font-size: 18px;"><strong>Your Question:</strong> {{ question }}</p>
-    <p style="font-size: 10px;"><strong>Naive Bayes Prediction:</strong> {{ nb_prediction }} &nbsp; &nbsp;&nbsp;
+    
+    <p style="font-size: 16px;"><strong>Naive Bayes Prediction:</strong> {{ nb_prediction }} &nbsp; &nbsp;&nbsp;
      <strong>SVM Prediction:</strong> {{ svm_prediction }} &nbsp;&nbsp;&nbsp;
-     <strong>XGBoost Prediction:</strong> {{ xgb_prediction }} 
-    <p style="font-size: 18px;"></p><strong>Final Prediction:</strong> {{ final_prediction }}</p>
+     <strong>XGBoost Prediction:</strong> {{ xgb_prediction }} </p>
+    <br><br>
+    <p style="font-size: 25px ;font-weight: bolder; " >FINAL PREDICTION: {{ final_prediction }}</p>
   {% endif %}
   
-  <div class="bottom-description">
+  <div class="bottom-description",>
     <p style="font-size: 16px;"><strong>Delving into the Depths of Cognitive Learning:</strong></p>
   
     <p style="font-size: 12px;">This innovative tool, made by Jithin Vinod (20ME31020), empowers you to seamlessly classify questions based on the esteemed Bloom's Taxonomy. By meticulously analyzing each question, it discerns its alignment with the six fundamental levels of intellectual engagement:</p>
   
     <ul class ="no_bullets">
-      <li><strong>Knowledge     :</strong> Recalling specific facts or knowledge</li>
+      <li><strong>Knowledge:</strong> Recalling specific facts or knowledge</li>
       <li><strong>Comprehension :</strong> Grasping the meaning and implications of information</li>
       <li><strong>Application   :</strong> Employing knowledge to solve problems and make decisions</li>
       <li><strong>Analyze       :</strong> Breaking down complex information into its components</li>
