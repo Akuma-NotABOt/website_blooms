@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload PDF Page</title>
+  <style>
+   .bottom-description {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #bdbdba;
+    font-size: 12px;
+  }
+  .no_bullets{
+    list-style-type: none;
+    font-size: 12px;
+  }
+  .special{
+    font-family: Arial, Helvetica, sans-serif;
+    margin:0px;
+  }
+  .mbutton{
+    background-color: rgb(227, 164, 39);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #dddddd;
+  }
+
+  th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  /* CSS for hiding/showing content */
+  .hidden {
+    display: none;
+  }
+  </style>
+</head>
+<body style="text-align: center;" class="special">
+    <h1 style="font-size: 30px; color:rgb(227, 164, 39)" >Harnessing Blooms Taxonomy</h1>
+    <h2 style="font-size: 20px; font-weight: lighter;">Upload PDF Page</h2>
+    <h3 style="font-size: 16px; font-weight: lighter;">BTP-II by Jithin Vinod (20ME31020)</h3>
+
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <label for="pdf" style="font-size: 18px;">Upload your PDF:</label>
+    <input type="file" name="pdf_file" accept=".pdf">
+    <br><br>    
+    <button type="submit" class="mbutton">UPLOAD</button>
+  </form>
+
+  {% if request.method == 'POST' %}
+  <div id="predictions" class="hidden">
+    <h1>Predictions</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Questions</th>
+          <th>Predictions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for index, row in dataframe.iterrows() %}
+          <tr>
+            <td>{{ loop.index }} </td>
+            <td>{{ row['Questions'] }}</td>
+            <td>{{ row['Predictions'] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Button to show the predictions -->
+  <button onclick="togglePredictions()" class="mbutton">Show Predictions</button>
+  <!-- JavaScript to show predictions -->
+  <script>
+    function togglePredictions() {
+      var predictionsDiv = document.getElementById("predictions");
+      predictionsDiv.classList.toggle("hidden");
+    }
+  </script>
+</body>
+{% endif %}
+</html>

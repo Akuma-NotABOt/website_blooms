@@ -44,7 +44,7 @@
 <body style="text-align: center;" class="special">
     <h1 style="font-size: 30px; color:rgb(227, 164, 39)" >Harnessing Blooms Taxonomy</h1>
     <h2 style="font-size: 20px; font-weight: lighter;">  Question Classification Tool </h2>
-    <h3 style="font-size: 16px; font-weight: lighter;">BTP-1 by Jithin Vinod (20ME31020)</h3>
+    <h3 style="font-size: 16px; font-weight: lighter;">BTP-II by Jithin Vinod (20ME31020)</h3>
 
   <form action="/predict" method="post">
     <label for="question" style="font-size: 18px;">Enter your question:</label>
@@ -79,6 +79,8 @@
   
     <p style="font-size: 12px;"><strong>Model Training:</strong> The models were trained on a dataset of about <strong>2000 questions</strong>. The final prediction was decided on by accounting for the predictions of each model and iteratively assigning them weights, which were implemented in the final tool.</p>
   </div>
- 
+  <form action="/upload" method="get">
+    <button type="submit" class="mbutton">Upload PDF</button>
+  </form>
 </body>
 </html>
