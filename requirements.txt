@@ -4,3 +4,8 @@ joblib~=1.3.2
 Flask~=2.3.2
 scikit-learn~=1.3.2
 xgboost
+openai
+pandas
+langchain_community
+pypdf
+langchain
