@@ -12,12 +12,12 @@ tfidf_vectorizer = joblib.load('tfidf_vectorizer.joblib')
 svm_model = joblib.load('svm_model.joblib')
 xgb_model = joblib.load('xgboost_model.joblib')
 label_encoder = joblib.load('label_encoder.joblib')"""
-vectorizer = joblib.load(r"D:\Codes\BTP II\newest\website_blooms\count_vectorizer.joblib")
-naive_bayes_model = joblib.load(r'D:\Codes\BTP II\newest\website_blooms\naive_bayes_model.joblib')
-tfidf_vectorizer = joblib.load(r'D:\Codes\BTP II\newest\website_blooms\tfidf_vectorizer.joblib')
-svm_model = joblib.load(r'D:\Codes\BTP II\newest\website_blooms\svm_model.joblib')
-xgb_model = joblib.load(r'D:\Codes\BTP II\newest\website_blooms\xgboost_model.joblib')
-label_encoder = joblib.load(r"D:\Codes\BTP II\newest\website_blooms\label_encoder.joblib")
+vectorizer = joblib.load("count_vectorizer.joblib")
+naive_bayes_model = joblib.load('naive_bayes_model.joblib')
+tfidf_vectorizer = joblib.load('tfidf_vectorizer.joblib')
+svm_model = joblib.load('svm_model.joblib')
+xgb_model = joblib.load('xgboost_model.joblib')
+label_encoder = joblib.load("label_encoder.joblib")
 
 @app.route('/')
 def index():
