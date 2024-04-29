@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 import joblib, os
 from collections import Counter
-from make_csv import get_csv
+from make_csv import get_csv, scorecheck
 import pandas as pd
+from verbs import sig_verbs
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI", "sqlite:///posts.db")
 # Load saved models
@@ -12,12 +13,12 @@ tfidf_vectorizer = joblib.load('tfidf_vectorizer.joblib')
 svm_model = joblib.load('svm_model.joblib')
 xgb_model = joblib.load('xgboost_model.joblib')
 label_encoder = joblib.load('label_encoder.joblib')"""
-vectorizer = joblib.load("count_vectorizer.joblib")
-naive_bayes_model = joblib.load('naive_bayes_model.joblib')
-tfidf_vectorizer = joblib.load('tfidf_vectorizer.joblib')
-svm_model = joblib.load('svm_model.joblib')
-xgb_model = joblib.load('xgboost_model.joblib')
-label_encoder = joblib.load("label_encoder.joblib")
+vectorizer = joblib.load(r"D:\Codes\BTP II\newest\website_blooms\count_vectorizer.joblib")
+naive_bayes_model = joblib.load(r'D:\Codes\BTP II\newest\website_blooms\naive_bayes_model.joblib')
+tfidf_vectorizer = joblib.load(r'D:\Codes\BTP II\newest\website_blooms\tfidf_vectorizer.joblib')
+svm_model = joblib.load(r'D:\Codes\BTP II\newest\website_blooms\svm_model.joblib')
+xgb_model = joblib.load(r'D:\Codes\BTP II\newest\website_blooms\xgboost_model.joblib')
+label_encoder = joblib.load(r"D:\Codes\BTP II\newest\website_blooms\label_encoder.joblib")
 
 @app.route('/')
 def index():
@@ -57,12 +58,11 @@ def upload():
         pdf_file_path = 'temp.pdf'
         pdf_file.save(pdf_file_path)
 
-        # Extract questions from the uploaded PDF and generate CSV
         get_csv(pdf_file_path)
         df = pd.read_csv('questions.csv')
 
         # return jsonify({'message': 'CSV file generated successfully'})
-        return render_template('upload.html',dataframe = df) 
+        return render_template('upload.html', dataframe = df, score = (scorecheck(df)*100/6), verbs= sig_verbs(df)) 
     else:
         # Handle GET request (if needed)
         return render_template('upload.html')  # Render the upload.html page
