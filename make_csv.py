@@ -73,6 +73,17 @@ def get_csv(file_path):
     q=extract_questions_from_pdf(file_path)
     p=predict_questions(q)
     return save_predictions_to_csv(q,p)
-
+    
+def scorecheck(df):
+    score = [0,0,0]
+    for pred in df['Predictions']:
+        if pred == 'Synthesis':
+            score[0]=3
+        if pred == 'Evaluation':
+            score[1]=2
+        if pred == 'Analyse':
+            score[2]=1
+    
+    return sum(score)
 
 
