@@ -91,14 +91,29 @@
   </div>
 
   <!-- Button to show the predictions -->
-  <button onclick="togglePredictions()" class="mbutton">Show Predictions</button>
-  <!-- JavaScript to show predictions -->
+  <button onclick="togglePredictions('predictions')" class="mbutton">Show Predictions</button>
+
+  <div id ='Score' class='hidden'>
+    <h1 style ='font-size: 20px; font-weight: lighter;'>The score is: {{score|round(2)}}/100</h1>
+  </div>
+  <button onclick="togglePredictions('Score')" class="mbutton">Score</button>
+  <div id = 'verbs' class = 'hidden'>
+    {% for class_name, ver in verbs.items() %}
+    <h2>{{ class_name }}</h2>
+    <ul>
+        {% for verb, count in ver %}
+            <li>{{ verb }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+  </div>
+  <button onclick="togglePredictions('verbs')" class="mbutton">Analyze</button>
   <script>
-    function togglePredictions() {
-      var predictionsDiv = document.getElementById("predictions");
+    function togglePredictions(div_id) {
+      var predictionsDiv = document.getElementById(div_id);
       predictionsDiv.classList.toggle("hidden");
     }
   </script>
+  {% endif %}
 </body>
-{% endif %}
 </html>
